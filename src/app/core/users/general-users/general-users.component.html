@@ -1,0 +1,22 @@
+<app-search (keyWord)="searchKey = $event; getAllUsersList(true)"></app-search>
+
+<div id="content" class="py-2 px-3 bg-light w-100" style="min-height: 100vh">
+  <app-users-list
+    [userFilter]="pageObject"
+    [users]="users"
+    [totalCount]="totalCount"
+  ></app-users-list>
+</div>
+<div class="d-flex justify-content-end mx-3">
+  <pagination-controls
+    *ngIf="totalCount > pageSize"
+    id="pageId"
+    (pageChange)="
+      currentPage.emit($event);
+      pageObject.paging.pageNumber = $event;
+      getAllUsersList()
+    "
+    previousLabel=""
+    nextLabel=""
+  ></pagination-controls>
+</div>

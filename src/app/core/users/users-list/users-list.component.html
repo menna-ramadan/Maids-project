@@ -1,0 +1,78 @@
+<div id="content" class="py-2 px-3 bg-light w-100" style="margin-top: 40px">
+  <div class="pt-2 mt-2">
+    <h4 class="mb-4 ms-3 mt-2" style="color: #157af8">Users</h4>
+  </div>
+  <div
+    *ngIf="users?.length"
+    class="table table-responsive table-sm px-3 py-3 shadow rounded"
+  >
+    <table class="table mb-0 bg-white w-100 rounded">
+      <thead class="bg-light">
+        <tr>
+          <!-- <th class="text-nowrap">Id</th> -->
+          <th class="text-nowrap">Full Name</th>
+          <th class="text-nowrap">Email</th>
+          <th class="text-nowrap"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let user of users
+              | paginate
+                : {
+                    id: 'pageId',
+                    itemsPerPage: userFilter.paging.pageSize,
+                    currentPage: userFilter.paging.pageNumber,
+                    totalItems: totalCount
+                  }
+          "
+        >
+          <td>
+            <div class="d-flex align-items-center">
+              <img
+                [src]="user?.avatar"
+                class="rounded-circle"
+                alt=""
+                style="width: 45px; height: 45px"
+              />
+              <div class="ms-3">
+                <p class="fw-bold mb-1">
+                  {{ user?.first_name }} {{ user?.last_name }}
+                </p>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+              <div class="">
+                <p class="fw-normal mt-2">{{ user?.email }}</p>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <button
+              class="border border-secondary rounded"
+              (click)="viewUserProfile(user)"
+            >
+              View
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    *ngIf="!users?.length"
+    class="d-flex justify-content-center items-center bg-white text-center w-100"
+    style="min-height: 100vh"
+  >
+    <div>
+      <img class="inline-block w-100" src="assets/images/no-data.jpg" alt="" />
+      <p class="text-font-16 font-Poppins-medium text-dark-grey">
+        No Users Found
+      </p>
+    </div>
+  </div>
+</div>

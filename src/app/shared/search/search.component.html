@@ -1,0 +1,26 @@
+<div class="input-group py-2 px-5">
+  <div class="form-outline d-flex position-relative" style="width: 96%">
+    <input
+      [formControl]="searchVal"
+      (keyup.enter)="keyWord.emit(searchVal.value)"
+      placeholder="search"
+      id="form1"
+      class="form-control w-100"
+    />
+    <i
+      *ngIf="searchVal.value"
+      class="fa fa-close mt-2 fs-5 position-absolute"
+      style="right: 1%"
+      aria-hidden="true"
+      (click)="searchVal.setValue(''); keyWord.emit(searchVal.value)"
+    ></i>
+  </div>
+
+  <button
+    type="button"
+    (click)="keyWord.emit(searchVal.value)"
+    class="btn btn-primary"
+  >
+    <i class="fa fa-search"></i>
+  </button>
+</div>

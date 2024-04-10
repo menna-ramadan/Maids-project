@@ -1,0 +1,30 @@
+.tabs {
+  padding: 10px 40px;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.active {
+  position: relative;
+  color: #6e7191;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  /* color: #e45f26; */
+}
+
+.active::after {
+  content: "";
+  position: absolute;
+  height: 5px;
+  width: 60%;
+  /* border-bottom: 1px solid #e45f26; */
+  bottom: -1px;
+  left: 24%;
+}
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+.bg-gray {
+  background: rgb(172, 169, 169) !important;
+}

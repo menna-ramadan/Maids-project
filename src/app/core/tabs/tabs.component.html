@@ -1,0 +1,17 @@
+<div class="d-flex px-3">
+  <div
+    *ngFor="let tap of taps"
+    class="relative mx-2  {{
+      activeTap == tap?.value ? 'bg-primary' : 'bg-gray'
+    }}  text-white py-2 tabs"
+  >
+    <a class="relative">
+      <h5
+        (click)="activeTap = tap?.value; tapChanged.emit(tap?.value)"
+        class="m-0 text-white font-normal text-decoration-none cursor-pointer f whitespace-nowrap"
+      >
+        {{ tap.name }}
+      </h5>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<!-- <mat-spinner *ngIf="loading"></mat-spinner> -->
+
+<div class="d-flex flex-column">
+  <mat-toolbar
+    mode="top"
+    class="position-fixed w-100 d-flex justify-content-between"
+    style="z-index: 99 !important; height: 100px !important"
+  >
+    <app-toolbar></app-toolbar>
+    <div class="d-flex align-items-center">
+      <div>
+        <img
+          class="rounded-full"
+          style="width: 40px; height: 40px; border-radius: 100%"
+          alt=""
+          [src]="baseUrl + userImg"
+        />
+      </div>
+      <div class="mx-2 mt-4 fs-6">
+        <p class="mb-0 pb-0">{{ userFirstName }} {{ userLastName }}</p>
+        <p class="m-0 fs-6" style="padding-bottom: 20px">Admin</p>
+      </div>
+      <button style="border: none" mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="goToLogin()">
+          <mat-icon>exit_to_app</mat-icon>
+          Logout
+        </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+  <app-sidebar
+    class="position-fixed w-100"
+    style="z-index: 99 !important; margin-top: 90px; margin-bottom: 20px"
+  ></app-sidebar>
+  <router-outlet style="padding-top: 150px"></router-outlet>
+</div>
+<!--
+<div class="container-fluid m-0 p-0">
+  <mat-sidenav-container>
+    <mat-sidenav
+      #sidenav
+      mode="side"
+      style="margin-top: 80px !important"
+      class="position-fixed m-2 rounded"
+      opened
+    >
+      <app-sidebar></app-sidebar>
+    </mat-sidenav>
+    <mat-sidenav-content class="p-4 pt-5">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div> -->

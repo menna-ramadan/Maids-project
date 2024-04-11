@@ -11,9 +11,9 @@ import { environment } from 'src/environments/environment';
 })
 export class UsersListComponent implements OnInit {
   @Input() users: User[] = [];
-  @Input() totalCount = 0;
+  @Input() total = 0;
   @Input() userFilter: any = {
-    paging: { pageNumber: 1, pageSize: 10 },
+    paging: { pageNumber: 1, pageSize: 6 },
   };
 
   baseUrl: string = environment.baseUrl;

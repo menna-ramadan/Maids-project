@@ -12,12 +12,12 @@ export class GeneralUsersComponent implements OnInit {
   tabs = UsersStatus;
   users: User[] = [];
   Subscription: Subscription = new Subscription();
-  totalCount: number = 0;
-  pageSize = 10;
+  total: number = 0;
+  pageSize = 6;
   currentPage: EventEmitter<number> = new EventEmitter();
   searchKey: string = '';
   pageObject: any = {
-    paging: { pageNumber: 1, pageSize: 10 },
+    paging: { pageNumber: 1, pageSize: 6 },
   };
 
   constructor(private userService: UsersService) {}
@@ -36,8 +36,10 @@ export class GeneralUsersComponent implements OnInit {
           // this.searchKey
         )
         .subscribe((res: any) => {
+          const ii = res.data.filter((user: any) => user.id === this.searchKey);
           this.users = res.data;
-          this.totalCount = res.data.length;
+          console.log(res.total, 'res.total');
+          this.total = res.total;
           this.users.forEach(
             (value: any) => (value.image = getFullImageUrl(value.image))
           );

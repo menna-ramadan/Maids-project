@@ -2,7 +2,7 @@
   <div class="form-outline d-flex position-relative" style="width: 96%">
     <input
       [formControl]="searchVal"
-      (keyup.enter)="keyWord.emit(searchVal.value)"
+      (keyup)="keyWord.emit(searchVal.value)"
       placeholder="search"
       id="form1"
       class="form-control w-100"

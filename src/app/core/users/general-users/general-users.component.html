@@ -1,15 +1,20 @@
 <app-search (keyWord)="searchKey = $event; getAllUsersList(true)"></app-search>
+<!-- <input
+  type="text"
+  [(ngModel)]="searchKey"
+  (ngModelChange)="getAllUsersList()"
+/> -->
 
 <div id="content" class="py-2 px-3 bg-light w-100" style="min-height: 100vh">
   <app-users-list
     [userFilter]="pageObject"
     [users]="users"
-    [totalCount]="totalCount"
+    [total]="total"
   ></app-users-list>
 </div>
 <div class="d-flex justify-content-end mx-3">
   <pagination-controls
-    *ngIf="totalCount > pageSize"
+    *ngIf="total > pageSize"
     id="pageId"
     (pageChange)="
       currentPage.emit($event);

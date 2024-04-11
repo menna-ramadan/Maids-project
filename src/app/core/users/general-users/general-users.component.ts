@@ -15,7 +15,7 @@ export class GeneralUsersComponent implements OnInit {
   total: number = 0;
   pageSize = 6;
   currentPage: EventEmitter<number> = new EventEmitter();
-  searchKey: string = '';
+  searchKey!: number;
   pageObject: any = {
     paging: { pageNumber: 1, pageSize: 6 },
   };
@@ -30,19 +30,11 @@ export class GeneralUsersComponent implements OnInit {
     search ? (this.pageObject.paging.pageNumber = 1) : null;
     this.Subscription.add(
       this.userService
-        .grtAllUsers(
-          this.pageObject.paging.pageNumber
-          // 10,
-          // this.searchKey
-        )
+        .grtAllUsers(this.pageObject.paging.pageNumber)
         .subscribe((res: any) => {
-          const ii = res.data.filter((user: any) => user.id === this.searchKey);
-          this.users = res.data;
-          console.log(res.total, 'res.total');
+          const ii = res.data.filter((user: any) => user.id == this.searchKey);
+          search ? (this.users = ii) : (this.users = res.data);
           this.total = res.total;
-          this.users.forEach(
-            (value: any) => (value.image = getFullImageUrl(value.image))
-          );
         })
     );
   }

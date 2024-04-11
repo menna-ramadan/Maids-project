@@ -8,7 +8,7 @@ import { FormControl } from '@angular/forms';
 })
 export class SearchComponent implements OnInit {
   @Output() keyWord: EventEmitter<any> = new EventEmitter();
-  searchVal = new FormControl();
+  searchVal = new FormControl('');
 
   constructor() {}
 

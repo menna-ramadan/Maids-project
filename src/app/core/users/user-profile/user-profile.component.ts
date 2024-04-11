@@ -47,4 +47,7 @@ export class UserProfileComponent implements OnInit {
   back() {
     this.router.navigate(['/dashboard/users-list']);
   }
+  ngOnDestroy() {
+    this.Subscription.unsubscribe();
+  }
 }

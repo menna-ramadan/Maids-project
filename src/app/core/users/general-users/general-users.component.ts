@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
-import { getFullImageUrl, User, UsersStatus } from '../../models/user';
+import { User, UsersStatus } from '../../models/user';
 import { Subscription } from 'rxjs';
 import { UsersService } from '../users.service';
 
@@ -9,13 +9,12 @@ import { UsersService } from '../users.service';
   styleUrls: ['./general-users.component.css'],
 })
 export class GeneralUsersComponent implements OnInit {
-  tabs = UsersStatus;
   users: User[] = [];
   Subscription: Subscription = new Subscription();
   total: number = 0;
   pageSize = 6;
   currentPage: EventEmitter<number> = new EventEmitter();
-  searchKey!: number;
+  searchKey!: any;
   pageObject: any = {
     paging: { pageNumber: 1, pageSize: 6 },
   };
@@ -33,9 +32,15 @@ export class GeneralUsersComponent implements OnInit {
         .grtAllUsers(this.pageObject.paging.pageNumber)
         .subscribe((res: any) => {
           const ii = res.data.filter((user: any) => user.id == this.searchKey);
-          search ? (this.users = ii) : (this.users = res.data);
+
+          search && this.searchKey != ''
+            ? (this.users = ii)
+            : (this.users = res.data);
           this.total = res.total;
         })
     );
+  }
+  ngOnDestroy() {
+    this.Subscription.unsubscribe();
   }
 }

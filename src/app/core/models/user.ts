@@ -13,12 +13,6 @@ export interface UserProfile extends User {
   url: string;
 }
 
-export function getFullImageUrl(image: string): string {
-  console.log(image);
-  const isFullUrl = /^(?:http|https):\/\//.test(image);
-  return isFullUrl ? image : environment.baseUrl + image;
-}
-
 export const UsersStatus: {
   name: string;
   value: string;
@@ -29,11 +23,6 @@ export const UsersStatus: {
 export enum UserStatusEnum {
   All = 0,
   Blocked = 1,
-}
-
-export enum Gender {
-  Male = 0,
-  Female = 1,
 }
 
 Object.keys(UserStatusEnum).forEach((value: string) =>
